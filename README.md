@@ -8,36 +8,134 @@ Welcome to the EasyPractice tech challenge! Below you'll find a list of tasks to
 2. Copy `.env.example` to `.env`
 3. Update the `.env` file to include the correct database connection details
 4. Run `composer install`, `php artisan key:generate`, `php artisan migrate`, `npm install` and `npm run dev` (ignore the build warnings)
-5. Open up the project in the browser and click on "Register" to create a new user. All the work will be done while logged in.
-6. Code indentation should be set up at 4 spaces in both PHP and JS files.
-7. Work through the tasks in a new branch named `challenge/{your-name}`. Commit as often as you like.
-8. Once you have completed the tasks, create a **new Pull Request** and send us the link to it from your fork.
+5. Run `php artisan db:seed` to populate the database
+6. Open up the project in the browser and click on "Register" to create a new user. All the work will be done while logged in.
+7. Code indentation should be set up at 4 spaces in both PHP and JS files.
+8. Work through the tasks in a new branch named `challenge/{your-name}`. Commit as often as you like.
+9. Once you have completed the tasks, create a **new Pull Request** and send us the link to it from your fork.
 
 **Important**: Please DO NOT submit a Pull Request to the original repo, fork this one and submit a PR on your own repo :)
 
-## The tasks
+## Technical Support Challenge - Assessment Objectives
+This technical support challenge evaluates candidates' ability to handle real-world support scenarios. We assess how candidates prioritize issues by distinguishing between critical system problems and individual user requests. Candidates should demonstrate clear problem-solving methodology, explain their thinking process, and justify their decisions about resource allocation.
 
-Complete as many as you can. If you got some time left, there's BONUS tasks, but they're not required ;)
+Key evaluation areas include priority assessment, systematic problem analysis, solution development, and communication skills. We look for balanced judgment that considers both technical feasibility and business impact. While there are no strictly "right" answers, responses should show logical thinking and the ability to explain technical concepts clearly.
 
-**Solve this first:**
-- [ ] (BUG) I created some seeders that you can run with `php artisan db:seed`, but it gives an error. Can you make it work?
+The challenge helps us identify candidates who can effectively troubleshoot issues while maintaining professional communication and documentation standards.
 
-**And these in any order:**
-- [ ] (BUG) For some reason, the client bookings are not showing up in the front-end. Can you fix that?
-- [ ] (BUG) The list of bookings displayed on a client page has unformatted dates. Can you make sure they look something like this: `Monday 19 January 2020, 14:00 to 15:00`
-- [ ] (FEATURE) Currently, any logged-in user can view all of the system's clients, including those created by other users. Users are obviously not happy with that. Can you make it so that a single Client only belongs to one User?
-- [ ] (BUG) When trying to delete a client, the front-end does not update. Can you improve the experience, so the user knows the client was actually deleted? (tip: use `php artisan db:seed --class=ClientSeeder` to generate some clients if you have none)
-- [ ] (FEATURE) We noticed users started entering random data when creating clients. We should include some validation. Make sure that, when creating a client:
-  - The `name` is up to 190 characters and it's required
-  - The `email` is an actual valid email address. Hint: "arunas@example" is NOT a valid email address in our case.
-  - The `phone` can only contain digits, spaces and a plus sign
-  - At least one of (phone/email) is required
-- [ ] (FEATURE) The client bookings are currently displayed in random order. Please display them in chronological order, newest first.
-- [ ] (FEATURE) Users want a quick way to see future and past bookings. When viewing client bookings, can you make a dropdown with three values - "All bookings", "Future bookings only" and "Past bookings only". Make it so that selecting an item from the dropdown would only show bookings that apply to the selected filter. When the page loads, default to "All bookings".
+## The tickets
 
-**BONUS TASKS!**
-- [ ] *BONUS:* (FEATURE) Users have requested the ability to write journals for their clients. A Journal should have a date field (without hours/minutes) and a text field (unlimited length). A client can have many journals. A user should be able to view, create and delete journals.
-- [ ] *BONUS:* (REFACTOR) We strive for fast and readable code that follows Laravel's/Vue.js style and best practices. Take the time remaining and refactor any code you think can be improved, including ours. The goal is to leave the code better than you found it ;)
+Please tackle each ticket in a different commit if possible.
+
+### Support Ticket: Client Booking Visibility Issue 
+- [ ] Please update ticket with findings and proposed solution:
+```
+Priority: Critical
+
+What is the problem?:
+When users visit a client's page in our system, they are unable to see that client's booking information. The booking data should be visible but nothing is displaying on the page.
+
+What did I already do to try and solve it? (Ex.: recreate in own system, details gathered):
+- Asked user to log out and log back in
+- Checked with another user who has the same problem
+- Confirmed with the user that they can see other parts of the client page
+- Asked user to try a different browser but had the same issue
+
+Example from the user (if necessary):
+"When I click on any client, I can see their basic information, but the bookings section is completely empty."
+
+What do I need help with now?:
+Need guidance on troubleshooting why the booking data isn't being displayed.
+```
+
+### Support Ticket: Client Deletion Status Unclear
+- [ ] Please update ticket with findings and proposed solution:
+```
+Priority: Medium
+
+What is the problem?:
+When users click to delete a client, nothing seems to happen on the screen. Users can't tell if the delete action worked or not, and they have to refresh the page to see if the client was actually removed.
+
+What did I already do to try and solve it? (Ex.: recreate in own system, details gathered):
+- Clicked delete button multiple times to see if anything happens
+- Refreshed the page to check if client was actually deleted
+- Tried deleting different clients to see if it happens every time
+
+Example from the user (if necessary):
+"I clicked to delete a client, but nothing changed on my screen. I wasn't sure if it worked or not. When I refreshed the page, the client was gone from the list, but it would be nice to know right away if the deletion worked."
+
+What do I need help with now?:
+Need the development team to add some kind of message or indication that lets users know when a client has been successfully deleted. Right now users are unsure if their action worked or not.
+```
+### SECURITY VULNERABILITY: Client Privacy Concern
+- [ ] Please update ticket with findings and proposed solution:
+```
+Priority: Urgent
+
+What is the problem?:
+All users can see every client in the system, including clients they didn't create or aren't assigned to. This is causing privacy concerns as users should only be able to see their own clients.
+
+What did I already do to try and solve it? (Ex.: recreate in own system, details gathered):
+- Confirmed with several users that they can see everyone's clients
+- Checked if there were any visible settings to limit client visibility
+- Verified this happens for both new and existing users
+
+Example from the user (if necessary):
+"I can see all 500+ clients in the system, even ones from other departments and locations. I should only be able to see my own 50 clients. This doesn't seem right from a privacy perspective, and it makes it harder to find my actual clients in the list."
+
+What do I need help with now?:
+Need the technical team to implement proper privacy controls so users can only see their own clients or clients they're specifically assigned to. This is urgent as it's a privacy concern for our business.
+```
+
+### Support Ticket: Request for Booking Timeline Filter
+- [ ] Please update ticket with findings and proposed solution:
+```
+Priority: Low
+
+What is the problem?:
+One user has requested an easier way to separate future bookings from past bookings, suggesting a filter to quickly view upcoming or past appointments.
+
+What did I already do to try and solve it? (Ex.: recreate in own system, details gathered):
+- Asked if other users have reported similar requests (none have)
+- Checked if the current system prevents viewing necessary booking information (it doesn't)
+- Verified users can still access all booking information, just requires scrolling through the list
+
+Example from the user (if necessary):
+"It would be nice if we could have a way to just see upcoming bookings without having to look through all the old ones. Maybe a filter or something? Right now I have to scroll through everything to find future appointments."
+
+What do I need help with now?:
+Need assessment from the technical team on:
+1. Whether implementing a timeline filter is worth the development resources
+2. How many users might actually use this feature
+3. If this should be prioritized given that only one user has requested it and the current system, while less convenient, still allows users to access all booking information
+```
+
+### Support Ticket: System "Freezes" During Client Updates
+- [ ] Please update ticket with findings and proposed solution:
+```
+Priority: Low
+
+What is the problem?:
+One user reported that sometimes when they try to update client information, the system appears to freeze and doesn't save their changes. They have to refresh the page and enter the information again.
+
+What did I already do to try and solve it? (Ex.: recreate in own system, details gathered):
+- Asked user about their internet connection when this happens
+- Had them try clearing their browser cache
+- Checked if they experience the same issue on different browsers
+- Noted that the issue occurs more frequently when they're quickly clicking multiple times
+- Tested on my computer and couldn't reproduce the issue
+
+Example from the user (if necessary):
+"Sometimes when I'm updating client details, nothing happens when I click save. The page just sits there, and I have to refresh and do everything again. It's really frustrating when I'm trying to quickly update information during a call with a client."
+
+What do I need help with now?:
+Need guidance on whether this is:
+1. A system issue that needs fixing
+2. A user training opportunity about proper system interaction
+3. A potential local issue with the user's device or internet connection
+
+Note: User mentioned they're working from home using satellite internet, and the issue seems to happen more when their connection is slow.
+```
 
 ## Thank You!
 
