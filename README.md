@@ -14,7 +14,7 @@ Welcome to the EasyPractice tech challenge! Below you'll find a list of tasks to
 8. Work through the tasks in a new branch named `challenge/{your-name}`. Commit as often as you like.
 9. Once you have completed the tasks, create a **new Pull Request** and send us the link to it from your fork.
 
-**Important**: Please DO NOT submit a Pull Request to the original repo, fork this one and submit a PR on your own repo :)
+<span style="color:red">**Important**: Please DO NOT submit a Pull Request to the original repo, fork this one and submit a PR on your own repo :)</span>
 
 ## Technical Support Challenge - Assessment Objectives
 This technical support challenge evaluates candidates' ability to handle real-world support scenarios. We assess how candidates prioritize issues by distinguishing between critical system problems and individual user requests. Candidates should demonstrate clear problem-solving methodology, explain their thinking process, and justify their decisions about resource allocation.
@@ -28,7 +28,7 @@ The challenge helps us identify candidates who can effectively troubleshoot issu
 Please tackle each ticket in a different commit if possible.
 
 ### Support Ticket: Client Booking Visibility Issue 
-- [ ] Please update ticket with findings and proposed solution:
+- [ ] Please fix the ticket and update it with findings and proposed solution:
 ```
 Priority: Critical
 
@@ -49,7 +49,7 @@ Need guidance on troubleshooting why the booking data isn't being displayed.
 ```
 
 ### Support Ticket: Client Deletion Status Unclear
-- [ ] Please update ticket with findings and proposed solution:
+- [ ] Please fix the ticket and update it with findings and proposed solution:
 ```
 Priority: Medium
 
@@ -68,7 +68,7 @@ What do I need help with now?:
 Need the development team to add some kind of message or indication that lets users know when a client has been successfully deleted. Right now users are unsure if their action worked or not.
 ```
 ### SECURITY VULNERABILITY: Client Privacy Concern
-- [ ] Please update ticket with findings and proposed solution:
+- [ ] Please fix the ticket and update it with findings and proposed solution:
 ```
 Priority: Urgent
 
@@ -88,7 +88,7 @@ Need the technical team to implement proper privacy controls so users can only s
 ```
 
 ### Support Ticket: Request for Booking Timeline Filter
-- [ ] Please update ticket with findings and proposed solution:
+- [ ] Please fix the ticket and update it with findings and proposed solution:
 ```
 Priority: Low
 
@@ -111,7 +111,7 @@ Need assessment from the technical team on:
 ```
 
 ### Support Ticket: System "Freezes" During Client Updates
-- [ ] Please update ticket with findings and proposed solution:
+- [ ] Please fix the ticket and update it with findings and proposed solution:
 ```
 Priority: Low
 
