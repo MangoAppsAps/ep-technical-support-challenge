@@ -50,7 +50,10 @@ class ClientsController extends Controller
 
     public function destroy($client)
     {
-        Client::where('id', $client)->delete();
+        $userId = auth()->user()->id;
+        Client::where('id', $client)
+            ->where('user_id', $userId)
+            ->delete();
 
         return 'Deleted';
     }
