@@ -9,8 +9,8 @@ class ClientsController extends Controller
 {
     public function index()
     {
-        $clients = Client::all();
-
+        $userId = auth()->user()->id;
+        $clients = Client::where('user_id', $userId)->get();
         foreach ($clients as $client) {
             $client->append('bookings_count');
         }
