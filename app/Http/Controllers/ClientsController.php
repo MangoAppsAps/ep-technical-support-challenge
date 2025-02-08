@@ -29,6 +29,7 @@ class ClientsController extends Controller
         $client = Client::where('user_id', $userId)
             ->where('id', $client)
             ->with('bookings')
+            ->with('journals')
             ->first();
 
         return view('clients.show', ['client' => $client]);

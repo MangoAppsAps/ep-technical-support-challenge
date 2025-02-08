@@ -22,7 +22,11 @@
                             </tr>
                             <tr>
                                 <th class="text-gray-600 pr-3">Address</th>
-                                <td>{{ client.address }}<br/>{{ client.postcode + ' ' + client.city }}</td>
+                                <td>
+                                    {{ client.address }}<br />{{
+                                        client.postcode + " " + client.city
+                                    }}
+                                </td>
                             </tr>
                         </tbody>
                     </table>
@@ -63,14 +67,47 @@
                     <template v-else>
                         <p class="text-center">The client has no bookings.</p>
                     </template>
-
                 </div>
 
                 <!-- Journals -->
-                <div class="bg-white rounded p-4" v-if="currentTab == 'journals'">
+                <div
+                    class="bg-white rounded p-4"
+                    v-if="currentTab == 'journals'"
+                >
                     <h3 class="mb-3">List of client journals</h3>
 
-                    <p>(BONUS) TODO: implement this feature</p>
+                    <template v-if="journals && journals.length > 0">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Created At</th>
+                                    <th>Notes</th>
+                                    <th>Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr
+                                    v-for="journal in journals"
+                                    :key="journal.id"
+                                >
+                                    <td>{{ journal.created_at }}</td>
+                                    <td>{{ journal.notes }}</td>
+                                    <td>
+                                        <button
+                                            class="btn btn-danger btn-sm"
+                                            @click="deleteJournal(journal)"
+                                        >
+                                            Delete
+                                        </button>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </template>
+
+                    <template v-else>
+                        <p class="text-center">The client has no journals.</p>
+                    </template>
                 </div>
             </div>
         </div>
@@ -88,7 +125,8 @@ export default {
     data() {
         return {
             currentTab: 'bookings',
-        }
+            journals: []
+        };
     },
 
     methods: {
@@ -98,7 +136,31 @@ export default {
 
         deleteBooking(booking) {
             axios.delete(`/bookings/${booking.id}`);
+        },
+
+        async deleteJournal(journal) {
+            try {
+                await axios.delete(
+                    `/clients/${this.client.id}/journals/${journal.id}`
+                );
+
+                this.journals = this.journals.filter(j => j.id != journal.id);
+
+                window.alert('Journal deleted');
+            } catch (error) {
+                window.alert('An error occurred while deleting the journal');
+            }
+        }
+    },
+
+    watch: {
+        client: {
+            deep: true,
+            handler(newClient) {
+                this.journals = newClient.journals;
+            },
+            immediate: true
         }
     }
-}
+};
 </script>
